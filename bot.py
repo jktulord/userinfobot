@@ -39,9 +39,9 @@ def answer_alias_query(inline_query):
         )
     )
 
-    bor.answer_inline_query(
+    bot.answer_inline_query(
         inline_query_id=inline_query.id,
-        result=[alias_article],
+        results=[alias_article],
         cache_time=0
     )
 
