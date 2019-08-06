@@ -27,7 +27,7 @@ def send_welcome(message):
         bot.send_message(chat_id=message.chat.id, text=f'Last Name:{message.forward_from.last_name}')
         bot.send_message(chat_id=message.chat.id, text=f'Id:, {message.forward_from.id}')
 
-@@bot.inline_handler(func=lambda message: True)
+@bot.inline_handler(func=lambda message: True)
 def answer_alias_query(inline_query):
     username = inline_query.from_user.username
     alias_article = InlineQueryResultArticle(
