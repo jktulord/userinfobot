@@ -1,6 +1,8 @@
 import telebot
 import os
 from flask import Flask, request
+from telebot.types import InlineQueryResultArticle
+from telebot.types import InputTextMessageContent
 
 API_TOKEN = os.getenv('TG_API_TOKEN')
 bot = telebot.TeleBot(API_TOKEN)
@@ -24,6 +26,25 @@ def send_welcome(message):
         bot.send_message(chat_id=message.chat.id, text=f'First Name:, {message.forward_from.first_name}')
         bot.send_message(chat_id=message.chat.id, text=f'Last Name:{message.forward_from.last_name}')
         bot.send_message(chat_id=message.chat.id, text=f'Id:, {message.forward_from.id}')
+
+@@bot.inline_handler(func=lambda message: True)
+def answer_alias_query(inline_query):
+    username = inline_query.from_user.username
+    alias_article = InlineQueryResultArticle(
+        id='0',
+        title='Отправить мой алиас',
+        description='Отправить свой алиас в чат!',
+        input_message_content=InputTextMessageContent(
+            message_text=f'Мой алиас: @{username}'
+        )
+    )
+
+    bor.answer_inline_query(
+        inline_query_id=inline_query.id,
+        result=[alias_article],
+        cache_time=0
+    )
+
 
 
 @server.route('/' + API_TOKEN, methods=['POST'])
