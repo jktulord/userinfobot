@@ -34,5 +34,5 @@ def send_welcome(message):
         return '', 200
 
 bot.remove_webhook()
-bot.set_webhook(url=os.getenv('K') + API_TOKEN)
+bot.set_webhook(url=os.getenv('WEBHOOK_URL') + API_TOKEN)
 server.run(host="0.0.0.0", port=int(os.getenv('PORT', 8443)))
