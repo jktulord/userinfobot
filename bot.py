@@ -41,7 +41,7 @@ def answer_alias_query(inline_query):
 
     bot.answer_inline_query(
         switch_pm_text = '1',
-        switch_pm_parameter = ' ',
+        switch_pm_parameter = '1',
         inline_query_id=inline_query.id,
         results=[alias_article],
         cache_time=0
