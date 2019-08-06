@@ -14,11 +14,16 @@ def send_welcome(message):
     bot.send_message(chat_id=message.chat.id, text=f'Last Name:{message.chat.last_name}')
     bot.send_message(chat_id=message.chat.id, text=f'Id:, {message.chat.id}')
 
-@bot.message_handler(func=lambda message: get_state(message.chat.id) == 0)
+@bot.message_handler(func=lambda message: true)
 def send_welcome(message):
-    bot.send_message(chat_id=message.forward_from.id, text=f'First Name:, {message.chat.first_name}')
-    bot.send_message(chat_id=message.forward_from.id, text=f'Last Name:{message.chat.last_name}')
-    bot.send_message(chat_id=message.forward_from.id, text=f'Id:, {message.chat.id}')
+    if message.forward_from == none:
+        bot.send_message(chat_id=message.chat.id, text=f'First Name:, {message.chat.first_name}')
+        bot.send_message(chat_id=message.chat.id, text=f'Last Name:{message.chat.last_name}')
+        bot.send_message(chat_id=message.chat.id, text=f'Id:, {message.chat.id}')
+    else:
+        bot.send_message(chat_id=message.chat.id, text=f'First Name:, {message.forward_from.first_name}')
+        bot.send_message(chat_id=message.chat.id, text=f'Last Name:{message.forward_from.last_name}')
+        bot.send_message(chat_id=message.chat.id, text=f'Id:, {message.forward_from.id}')
 
 @server.route('/' + API_TOKEN, methods=['POST'])
     def get_message():
